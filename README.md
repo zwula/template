@@ -141,3 +141,13 @@ npx husky install
 生成husky配置文件（执行完这一步，根目录会有一个 .husky目录）
 npx husky add .husky/commit-msg
 向新生成的commit-msg文件中添加  npx --no-install commitlint --edit
+
+### 安装了husky后需要重新配置 pre-commit
+
+npx husky add .husky/pre-commit
+向新生成的pre-commit文件中添加  npx --no-install lint-staged
+并删除package.json中
+
+    "gitHooks": {
+        "pre-commit": "lint-staged"
+    },

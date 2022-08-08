@@ -9,9 +9,6 @@
     "test:coverage": "umi-test --coverage",
     "prepare": "husky install"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
   "lint-staged": {
     "*.{less,md,json}": [
       "prettier --write"
