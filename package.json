@@ -12,11 +12,16 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
+    "*.{less,md,json}": [
       "prettier --write"
     ],
+    "*.js?(x)": [
+      "prettier --write",
+      "eslint --fix"
+    ],
     "*.ts?(x)": [
-      "prettier --parser=typescript --write"
+      "prettier --parser=typescript --write",
+      "eslint --fix"
     ]
   },
   "dependencies": {

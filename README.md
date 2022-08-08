@@ -43,7 +43,8 @@ yarn
 
 
 ## 项目配置
-### umi 维护了一个 prettier，eslint，stylelint 的配置文件合集 umi-fabric
+### 配置umi-fabric
+umi 维护了一个 prettier，eslint，stylelint 的配置文件合集 umi-fabric
 yarn add @umijs/fabric
 
 删除项目创建时 .prettierrc 文件
@@ -102,3 +103,24 @@ yarn add eslint-plugin-prettier -D
 
 解决 stylelint 和 prettier 冲突
 1、使用 stylelint-config-prettier 来关掉 (disable) 所有和 Prettier 冲突的 stylelint 的配置，这一步umi-fabric已经帮我们做过了。
+
+
+### 配置pre-commit
+当项目中存在eslint式报错，阻止commit
+
+    "gitHooks": {
+        "pre-commit": "lint-staged"
+    },
+    "lint-staged": {
+        "*.{less,md,json}": [
+        "prettier --write"
+        ],
+        "*.js?(x)": [
+        "prettier --write",
+        "eslint --fix"
+        ],
+        "*.ts?(x)": [
+        "prettier --parser=typescript --write",
+        "eslint --fix"
+        ]
+    },
