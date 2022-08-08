@@ -124,3 +124,20 @@ yarn add eslint-plugin-prettier -D
         "eslint --fix"
         ]
     },
+
+
+### 配置husky & commitlint, 对commit提交信息进行格式校验
+
+安装husky 和 commitlint插件
+yarn add husky @commitlint/config-conventional @commitlint/cli -D
+
+添加配置文件
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js （注意格式，可以直接复制）
+
+手动启用husky
+npx husky install
+这一步，我们不可能每次 install 之后都手动去启用husky，如果开发A配置好了并提交，开发B拉下代码，装完依赖还需要去手动启用，很不合理。因此在package.json的里面添加如下配置："prepare": "husky install" 使每次安装完husky后自动启动husky
+
+生成husky配置文件（执行完这一步，根目录会有一个 .husky目录）
+npx husky add .husky/commit-msg
+向新生成的commit-msg文件中添加  npx --no-install commitlint --edit
